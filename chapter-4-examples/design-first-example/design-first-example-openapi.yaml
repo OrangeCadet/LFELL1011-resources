@@ -77,6 +77,13 @@ paths:
       summary: Retrieve a Pet
       description: Retrieve a Pet from the collection
       operationId: GetAPet
+      parameters:
+        - name: petId
+          in: path
+          description: petId to Retrieve
+          required: true
+          schema:
+            $ref: '#/components/schemas/PetId'
       tags:
         - GET
         - Read
@@ -101,6 +108,10 @@ components:
     PetType:
       description: The category of the Pet
       type: string
+    PetId:
+      description: The unique identifier for a Pet
+      type: integer
+      format: int64
     Pet:
       description: Properties of a Pet
       type: object
@@ -109,9 +120,7 @@ components:
         - name
       properties:
         id:
-          description: The unique identifier for a Pet
-          type: integer
-          format: int64
+          $ref: '#/components/schemas/PetId'
         name:
           $ref: '#/components/schemas/PetName'
         tag:
